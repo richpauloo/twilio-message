@@ -36,26 +36,24 @@ The `WHEN` build argument is used to download R dependencies from CRAN at that p
 Next, run the image in a container:
 
 ```
-docker run --rm -v ~/Desktop/twilio_message/results:/home/results twilio-message
+docker run --rm -v ~/Documents/Github/twilio-message/results:/home/results twilio-message
 ```
 
-`--rm` removes the container after it's run, and `~/Desktop/twilio_message/results:/home/results` transfers results from the container path `/home/results` to the local path `~/Desktop/twilio_message/results` after the container is finished running. 
+`--rm` removes the container after it's run, and `~/Desktop/twilio-message/results:/home/results` transfers results from the container path `/home/results` to the local path `~/Desktop/twilio-message/results` after the container is finished running. 
 
 Verify that this works by inspecting the files transfered by the container to your local drive:
 
 ```
-ls ~/Desktop/twilio_message/results
+ls ~/Desktop/twilio-message/results
 ```
 
 The target phone number should have also received a text message notification.
 
 
-# Docker resources
+## various Docker resources
 
 https://www.statworx.com/de/blog/running-your-r-script-in-docker/
 
 https://www.youtube.com/watch?v=HelrQnm3v4g
 
 https://code.markedmondson.me/googleCloudRunner/index.html
-
-docker run --rm 

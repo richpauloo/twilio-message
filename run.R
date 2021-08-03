@@ -15,7 +15,7 @@ writeLines(n, "session_info.txt")
 s <- read.csv("s.csv")
 
 # counter: number of days since 
-i <- as.numeric(Sys.Date() - as.Date("2021-07-31"))
+i <- as.numeric(Sys.Date() - as.Date(Sys.getenv("DEPLOY_DATE")))
 
 # randomly sample counter if it's out of range of the data
 if(i > nrow(s)){
