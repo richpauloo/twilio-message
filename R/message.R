@@ -11,7 +11,7 @@ deploy_date <- Sys.getenv("DEPLOY_DATE")
 s <- read.csv(here::here("R/s.csv"))
 
 # counter: number of days since deploy
-i <- as.numeric(Sys.Date() - as.Date(deploy_date))
+i <- as.numeric(Sys.Date() - lubridate::ymd(deploy_date))
 
 # randomly sample counter if it's out of range of the data
 if(i > nrow(s)){
