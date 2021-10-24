@@ -12,7 +12,7 @@ jobs:
       DEPLOY_DATE: ${{ secrets.DEPLOY_DATE }}
     runs-on: ubuntu-18.04
     container:
-     image: docker.io/richpauloo/dockertest:prod.0.0.01
+     image: docker.io/richpauloo/twm:prod.0.0.01
     steps:
       - name: checkout_repo
         uses: actions/checkout@v2
