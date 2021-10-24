@@ -17,4 +17,4 @@ jobs:
       - name: checkout_repo
         uses: actions/checkout@v2
       - name: Send text message
-        run: Rscript .R/message.R
+        run: Rscript -e "source('./R/message.R');"
