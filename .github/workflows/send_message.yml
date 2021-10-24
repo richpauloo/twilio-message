@@ -1,11 +1,11 @@
-name: Data Pipeline
+name: Send Twilio Text Message Scheduled
 
 on:
   schedule:
     - cron:  '* */6 * * *'
 jobs:
   data_refresh:
-    name: refresh the dashboard
+    name: send a message
     runs-on: ubuntu-18.04
     container:
      image: docker.io/richpauloo/dockertest:prod.0.0.01
