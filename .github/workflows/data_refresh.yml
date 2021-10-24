@@ -1,0 +1,18 @@
+name: Data Pipeline
+
+on:
+  schedule:
+    - cron:  '* */6 * * *'
+jobs:
+  data_refresh:
+    name: refresh the dashboard
+    runs-on: ubuntu-18.04
+    container:
+     image: docker.io/richpauloo/dockertest:prod.0.0.01
+    steps:
+      - name: checkout_repo
+        uses: actions/checkout@v2
+      - name: Refresh the data
+        run: bash ./R/data_refresh.sh
+      - name: Refresh the dashboard
+        run: bash ./R/dashboard_refresh.sh
