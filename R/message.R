@@ -8,7 +8,7 @@ tw_target_number <- Sys.getenv("TARGET_PHONE_NUMBER")
 deploy_date <- Sys.getenv("DEPLOY_DATE")
 
 # bible verses mentioning "love" or "compassion"
-s <- read.csv("s.csv")
+s <- read.csv("./R/s.csv")
 
 # counter: number of days since deploy
 i <- as.numeric(Sys.Date() - as.Date(deploy_date))
