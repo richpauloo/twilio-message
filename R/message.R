@@ -22,6 +22,8 @@ if(i > nrow(s)){
 # configure auth
 # Sys.setenv(TWILIO_SID   = tw_sid)
 # Sys.setenv(TWILIO_TOKEN = tw_tok)
+print(Sys.getenv("MY_VAR_QUOTED"))
+print(Sys.getenv("MY_VAR_UNQUOTED"))
 
 # send message
 tw_send_message(from = tw_phone_number, 
