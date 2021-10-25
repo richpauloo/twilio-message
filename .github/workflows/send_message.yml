@@ -1,4 +1,4 @@
-name: Send Twilio Text Message Scheduled
+name: Send Text Message Scheduled
 
 on:
   schedule:
@@ -6,17 +6,17 @@ on:
 jobs:
   data_refresh:
     name: send a message
+    environment: production
     env:
       TWILIO_SID: ${{ secrets.TWILIO_SID }}
       TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
       TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
       TARGET_PHONE_NUMBER: ${{ secrets.TARGET_PHONE_NUMBER }}
-      DEPLOY_DATE: ${{ secrets.DEPLOY_DATE }}
     runs-on: ubuntu-18.04
     container:
-     image: docker.io/richpauloo/dockertest:prod.0.0.01
+     image: docker.io/richpauloo/twm:prod.0.0.01
     steps:
       - name: checkout_repo
         uses: actions/checkout@v2
       - name: Send text message
-        run: Rscript -e "source('./R/message.R');"
+        run: bash ./R/run.sh  

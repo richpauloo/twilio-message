@@ -1,4 +1,4 @@
-name: Send Twilio Text Message Manual
+name: Send Text Message Manual
 
 on: workflow_dispatch
 jobs:
