@@ -4,6 +4,7 @@ on: workflow_dispatch
 jobs:
   data_refresh:
     name: send a message
+    environment: base
     env:
       TWILIO_SID: ${{ secrets.TWILIO_SID }}
       TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
