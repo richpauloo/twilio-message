@@ -2,7 +2,7 @@ library(twilio)
 
 # load environmental vars
 tw_sid <- Sys.getenv("TWILIO_SID")
-tw_tok <- Sys.getenv("TWILIO_AUTH_TOKEN")
+tw_tok <- Sys.getenv("TWILIO_TOKEN")
 tw_phone_number  <- Sys.getenv("TWILIO_PHONE_NUMBER")
 tw_target_number <- Sys.getenv("TARGET_PHONE_NUMBER")
 deploy_date <- "2021-10-23"
