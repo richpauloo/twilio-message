@@ -26,3 +26,5 @@ Sys.setenv(TWILIO_TOKEN = tw_tok)
 tw_send_message(from = tw_phone_number, 
                 to   = tw_target_number,
                 body = paste("\U0001f4d6", s$s[i]))
+
+cat("Sent row number", i)
