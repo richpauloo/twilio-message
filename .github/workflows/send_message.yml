@@ -6,7 +6,6 @@ on:
 jobs:
   data_refresh:
     name: send a message
-    environment: production
     env:
       TWILIO_SID: ${{ secrets.TWILIO_SID }}
       TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_TOKEN }}
