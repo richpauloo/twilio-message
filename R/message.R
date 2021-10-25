@@ -19,8 +19,8 @@ if(i > nrow(s)){
 }
 
 # configure auth
-Sys.setenv(TWILIO_SID   = tw_sid)
-Sys.setenv(TWILIO_TOKEN = tw_tok)
+# Sys.setenv(TWILIO_SID   = tw_sid)
+# Sys.setenv(TWILIO_TOKEN = tw_tok)
 
 # send message
 tw_send_message(from = tw_phone_number, 
