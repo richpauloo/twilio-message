@@ -9,7 +9,7 @@ jobs:
     environment: production
     env:
       TWILIO_SID: ${{ secrets.TWILIO_SID }}
-      TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+      TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_TOKEN }}
       TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
       TARGET_PHONE_NUMBER: ${{ secrets.TARGET_PHONE_NUMBER }}
     runs-on: ubuntu-18.04
