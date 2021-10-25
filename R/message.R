@@ -11,8 +11,7 @@ deploy_date <- "2021-10-23"
 s <- read.csv(here::here("R/s.csv"))
 
 # counter: number of days since deploy
-# i <- as.numeric(Sys.Date() - as.Date(deploy_date))
-i = 1
+i <- as.numeric(Sys.Date() - as.Date(deploy_date))
 
 # randomly sample counter if it's out of range of the data
 if(i > nrow(s)){
@@ -22,8 +21,6 @@ if(i > nrow(s)){
 # configure auth
 Sys.setenv(TWILIO_SID   = tw_sid)
 Sys.setenv(TWILIO_TOKEN = tw_tok)
-# print(Sys.getenv("MY_VAR_QUOTED"))
-# print(Sys.getenv("MY_VAR_UNQUOTED"))
 
 # send message
 tw_send_message(from = tw_phone_number, 
