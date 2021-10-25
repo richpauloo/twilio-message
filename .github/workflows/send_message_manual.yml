@@ -10,6 +10,8 @@ jobs:
       TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
       TARGET_PHONE_NUMBER: ${{ secrets.TARGET_PHONE_NUMBER }}
       DEPLOY_DATE: ${{ secrets.DEPLOY_DATE }}
+      MY_VAR_QUOTED: ${{ secrets.MY_VAR_QUOTED }}
+      MY_VAR_UNQUOTED: ${{ secrets.MY_VAR_UNQUOTED }}
     runs-on: ubuntu-18.04
     container:
      image: docker.io/richpauloo/twm:prod.0.0.01
