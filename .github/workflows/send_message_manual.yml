@@ -3,11 +3,6 @@ name: Send Text Message Manual
 on: workflow_dispatch
 jobs:
   data_refresh:
-    name: Create and populate .Renviron file
-      run: |
-        echo PHONE_NUMBER_MOM = "$PHONE_NUMBER_MOM" >> ~/.Renviron
-        echo PHONE_NUMBER_JP  = "$PHONE_NUMBER_JP"  >> ~/.Renviron
-        shell: bash
     name: send a message
     env:
       TWILIO_SID: ${{ secrets.TWILIO_SID }}
@@ -21,5 +16,10 @@ jobs:
     steps:
       - name: checkout_repo
         uses: actions/checkout@v2
+      - name: Create and populate .Renviron file
+        run: |
+          echo PHONE_NUMBER_MOM = "$PHONE_NUMBER_MOM" >> ~/.Renviron
+          echo PHONE_NUMBER_JP  = "$PHONE_NUMBER_JP"  >> ~/.Renviron
+          shell: bash
       - name: Send text message
         run: bash ./R/run.sh  
