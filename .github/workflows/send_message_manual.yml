@@ -19,7 +19,6 @@ jobs:
       - name: Create and populate .Renviron file
         run: |
           echo PHONE_NUMBER_MOM = "$PHONE_NUMBER_MOM" >> ~/.Renviron
-          echo PHONE_NUMBER_JP  = "$PHONE_NUMBER_JP"  >> ~/.Renviron
           shell: bash
       - name: Send text message
         run: bash ./R/run.sh  
