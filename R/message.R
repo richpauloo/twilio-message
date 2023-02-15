@@ -7,11 +7,14 @@ tw_phone_number <- Sys.getenv("TWILIO_PHONE_NUMBER")
 deploy_date <- "2023-02-12"
 
 # capture numbers which follow the convention
-# PHONE_NUMBER_{initials}
-env_vars <- names(Sys.getenv())
-num_ids  <- env_vars[grep("PHONE_NUMBER_", env_vars)]
-nums     <- unlist(lapply(num_ids, Sys.getenv))
-cat(length(nums), "phone numbers found.\n")
+# PHONE_NUMBER_{initials} - R couldn't find these env vars
+# env_vars <- names(Sys.getenv())
+# num_ids  <- env_vars[grep("PHONE_NUMBER_", env_vars)]
+# nums     <- unlist(lapply(num_ids, Sys.getenv))
+# cat(length(nums), "phone numbers found.\n")
+num_mom <- Sys.getenv("PHONE_NUMBER_MOM")
+num_jp  <- Sys.getenv("PHONE_NUMBER_JP")
+nums <- c(num_mom, num_jp)
 
 # bible verses mentioning "love" or "compassion"
 df <- read.csv(here::here("R/net_select.csv"))
