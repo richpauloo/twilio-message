@@ -4,7 +4,7 @@ library(twilio)
 tw_sid <- Sys.getenv("TWILIO_SID")
 tw_tok <- Sys.getenv("TWILIO_TOKEN")
 tw_phone_number <- Sys.getenv("TWILIO_PHONE_NUMBER")
-deploy_date <- "2021-10-23"
+deploy_date <- "2023-02-12"
 
 # capture numbers which follow the convention
 # PHONE_NUMBER_{initials}
@@ -13,14 +13,14 @@ num_ids  <- env_vars[grep("PHONE_NUMBER_", env_vars)]
 nums     <- unlist(lapply(num_ids, Sys.getenv))
 
 # bible verses mentioning "love" or "compassion"
-s <- read.csv(here::here("R/s.csv"))
+df <- read.csv(here::here("R/net_select.csv"))
 
 # counter: number of days since deploy
 i <- as.numeric(Sys.Date() - as.Date(deploy_date))
 
 # randomly sample counter if it's out of range of the data
-if(i > nrow(s)){
-  i = sample(1:nrow(s), 1)
+if(i > nrow(df)){
+  i = sample(1:nrow(df), 1)
 }
 
 # configure auth
