@@ -11,6 +11,7 @@ deploy_date <- "2023-02-12"
 env_vars <- names(Sys.getenv())
 num_ids  <- env_vars[grep("PHONE_NUMBER_", env_vars)]
 nums     <- unlist(lapply(num_ids, Sys.getenv))
+cat(length(nums), "phone numbers found.\n")
 
 # bible verses mentioning "love" or "compassion"
 df <- read.csv(here::here("R/net_select.csv"))
@@ -29,9 +30,10 @@ Sys.setenv(TWILIO_TOKEN = tw_tok)
 
 # send message
 for(j in seq_along(nums)){
+  cat("Preparing to send row number", i, "...")
   tw_send_message(from = tw_phone_number, 
                   to   = nums[j],
                   body = paste("\U0001f4d6", df$msg[i]))
   
-  cat("Sent row number", i)
+  cat("sent.\n.")
 }
