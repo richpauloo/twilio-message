@@ -3,9 +3,14 @@ library(twilio)
 # load environmental vars
 tw_sid <- Sys.getenv("TWILIO_SID")
 tw_tok <- Sys.getenv("TWILIO_TOKEN")
-tw_phone_number  <- Sys.getenv("TWILIO_PHONE_NUMBER")
-tw_target_number <- Sys.getenv("TARGET_PHONE_NUMBER")
+tw_phone_number <- Sys.getenv("TWILIO_PHONE_NUMBER")
 deploy_date <- "2021-10-23"
+
+# capture numbers which follow the convention
+# PHONE_NUMBER_{initials}
+env_vars <- names(Sys.getenv())
+num_ids  <- env_vars[grep("PHONE_NUMBER_", env_vars)]
+nums     <- unlist(lapply(num_ids, Sys.getenv))
 
 # bible verses mentioning "love" or "compassion"
 s <- read.csv(here::here("R/s.csv"))
@@ -23,8 +28,10 @@ Sys.setenv(TWILIO_SID   = tw_sid)
 Sys.setenv(TWILIO_TOKEN = tw_tok)
 
 # send message
-tw_send_message(from = tw_phone_number, 
-                to   = tw_target_number,
-                body = paste("\U0001f4d6", s$s[i]))
-
-cat("Sent row number", i)
+for(j in seq_along(nums)){
+  tw_send_message(from = tw_phone_number, 
+                  to   = nums[j],
+                  body = paste("\U0001f4d6", s$s[i]))
+  
+  cat("Sent row number", i)
+}
