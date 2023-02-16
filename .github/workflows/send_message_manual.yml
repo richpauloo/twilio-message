@@ -8,13 +8,18 @@ jobs:
       TWILIO_SID: ${{ secrets.TWILIO_SID }}
       TWILIO_TOKEN: ${{ secrets.TWILIO_TOKEN }}
       TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
-      PHONE_NUMBER_MOM: ${{ secrets.PHONE_NUMBER_MOM }}
-      PHONE_NUMBER_JP:  ${{ secrets.PHONE_NUMBER_JP }}
+      PHONE_NUMBER_RP: ${{ secrets.PHONE_NUMBER_RP }}
+      #PHONE_NUMBER_MOM: ${{ secrets.PHONE_NUMBER_MOM }}
+      #PHONE_NUMBER_JP:  ${{ secrets.PHONE_NUMBER_JP }}
     runs-on: ubuntu-18.04
     container:
      image: docker.io/richpauloo/twm:prod.0.0.01
     steps:
       - name: checkout_repo
         uses: actions/checkout@v2
+      - name: Create and populate .Renviron file
+        run: |
+          echo PHONE_NUMBER_RP = "$PHONE_NUMBER_RP" >> ~/.Renviron
+        shell: bash
       - name: Send text message
         run: bash ./R/run.sh  
