@@ -4,7 +4,7 @@ library(twilio)
 tw_sid <- Sys.getenv("TWILIO_SID")
 tw_tok <- Sys.getenv("TWILIO_TOKEN")
 tw_phone_number <- Sys.getenv("TWILIO_PHONE_NUMBER")
-deploy_date <- "2023-02-12"
+deploy_date <- "2023-02-16"
 
 # configure auth
 Sys.setenv(TWILIO_SID   = tw_sid)
@@ -18,7 +18,7 @@ nums     <- unlist(lapply(num_ids, Sys.getenv))
 cat(length(nums), "phone numbers found.\n")
 
 # bible verses mentioning "love" or "compassion"
-df <- read.csv(here::here("R/net_select.csv"))
+df <- read.csv(here::here("R/net_select_sentiment.csv"))
 
 # counter: number of days since deploy
 i <- as.numeric(Sys.Date() - as.Date(deploy_date))
@@ -34,6 +34,5 @@ for(j in seq_along(nums)){
   tw_send_message(from = tw_phone_number, 
                   to   = nums[j],
                   body = paste("\U0001f4d6", df$msg[i]))
-  
   cat(" sent.\n")
 }
