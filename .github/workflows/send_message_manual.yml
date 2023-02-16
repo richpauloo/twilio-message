@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Create and populate .Renviron file
         run: |
-          echo PHONE_NUMBER_RP = "$PHONE_NUMBER_RP" >> ~/.Renviron
+          echo PHONE_NUMBER_RP = ${{ secrets.PHONE_NUMBER_RP }} >> ~/.Renviron
         shell: bash
       - name: Send text message
         run: bash ./R/run.sh  
