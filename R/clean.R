@@ -5,18 +5,13 @@ library(glue)
 
 df <- read_csv(here::here("R/net.csv"))
 
-# clean and select love and compassion verses
-# df %>% 
-#   filter(Book.Name != "Revelation") %>% 
-#   mutate(msg = glue("{Book.Name} {Chapter}:{Verse} - {Text}")) %>% 
-#   select(msg) %>% 
-#   filter(str_detect(msg, "love|compassion|peace")) %>% 
-#   write_csv("R/net_select.csv")
-
 # sum of sentiment per verse, take 75th percentile of absolute
 # sentiment as "positive verses". this weights towards wordier verses
-df_text <- df %>% 
+rm_book <- c("Kings", "Revelation", "Samuel", "Ruth", "Judges", "Ezra",
+             "Esther", "Song of Solomon")
+df_text <- df %>%
   janitor::clean_names() %>% 
+  filter(!book_name %in% rm_book) %>% 
   mutate(msg = glue("{book_name} {chapter}:{verse} - {text}"))
 
 df_sentiment <- df_text %>%
@@ -29,23 +24,35 @@ df_sentiment <- df_text %>%
 
 cat(nrow(df_sentiment), "rows of pos and neg verses.\n")
 
-df_pos <- df_sentiment %>% 
-  filter(sentiment > 0)
-
+# retain only positive overall sentiment verses
+df_pos <- df_sentiment %>% filter(sentiment > 0)
 cat(nrow(df_pos), "rows of pos verses.\n")
 
 # quantiles of positive score
 quantile(df_pos$sentiment, seq(0, 1, 0.1))
 
-# pull every verse a score of 3 or more
+# pull every verse with a score of 2 or more
 verse_id_positive <- df_pos %>% 
-  filter(sentiment >= 3) %>% 
+  filter(sentiment >= 2) %>% 
   pull(verse_id)
+
+# extra regex to remove 
+rm_extra <- c(
+  "peace offering", "burnt offering", "annihilate", "Rebekah", "Rachel", 
+  "Shechem", "Sihon", "less loved", "wife", "deceived me", "seven sons", 
+  "Jonathan made", "Michal", "Jonathan once", "Hadadezer", "Hiram", 
+  "prostitutes", "lovemaking", "bedroom chambers"
+  ) %>% 
+  paste(collapse = "|")
   
-# use verse ids to pull actual verses
 df <- df_text %>% 
-  filter(verse_id %in% verse_id_positive) %>% 
+  filter(
+    verse_id %in% verse_id_positive,
+    str_detect(msg, "love|compassion|peace")
+  ) %>% 
+  filter(!str_detect(msg, rm_extra)) %>% 
   select(msg)
+cat(nrow(df), "rows of pos verses that mention love, compassion, peace.\n")
 
 # shuffle rows
 df <- df[sample(nrow(df)), ]
