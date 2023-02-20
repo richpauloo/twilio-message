@@ -4,7 +4,7 @@ library(twilio)
 tw_sid <- Sys.getenv("TWILIO_SID")
 tw_tok <- Sys.getenv("TWILIO_TOKEN")
 tw_phone_number <- Sys.getenv("TWILIO_PHONE_NUMBER")
-deploy_date <- "2023-02-20"
+deploy_date <- "2023-02-19"
 
 # configure auth
 Sys.setenv(TWILIO_SID   = tw_sid)
