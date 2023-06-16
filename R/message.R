@@ -34,5 +34,5 @@ for(j in seq_along(nums)){
   tw_send_message(from = tw_phone_number, 
                   to   = nums[j],
                   body = paste("\U0001f4d6", df$msg[i]))
-  cat(" sent.\n")
+  cat(" sent.\n\n")
 }

@@ -1,3 +1,3 @@
 # twilio-message
 
-Simple GH Action workflow that uses Twilio and R to text message my mom a quote daily. 
+Simple GH Action workflow that uses Twilio and R to text message my mom a quote daily. That's all.  
