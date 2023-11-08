@@ -12,7 +12,6 @@ jobs:
       TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
       PHONE_NUMBER_MOM: ${{ secrets.PHONE_NUMBER_MOM }}
       PHONE_NUMBER_RP:  ${{ secrets.PHONE_NUMBER_RP }}
-      PHONE_NUMBER_JP:  ${{ secrets.PHONE_NUMBER_JP }}
     runs-on: ubuntu-latest
     container:
      image: docker.io/richpauloo/twm:prod.0.0.01
